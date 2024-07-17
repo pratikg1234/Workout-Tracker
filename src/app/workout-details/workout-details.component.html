@@ -1,0 +1,18 @@
+<div class="p-4 md:p-8">
+  <div class="flex space-x-4 mb-4">
+    <mat-form-field class="w-full" appearance="fill">
+      <mat-label>Search</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (input)="search()" placeholder="Search">
+    </mat-form-field>
+    <mat-form-field class="w-full" appearance="fill">
+      <mat-label>Filter by Workout Type</mat-label>
+      <mat-select [(ngModel)]="selectedWorkoutType" (selectionChange)="filter()">
+        <mat-option *ngFor="let workoutType of workoutTypes" [value]="workoutType">
+          {{ workoutType }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <!-- Workout Details Section -->
+  <app-workout-table [users]="filteredUsers"></app-workout-table>
+</div>

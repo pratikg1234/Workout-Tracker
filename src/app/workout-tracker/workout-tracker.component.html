@@ -1,0 +1,82 @@
+<div class="max-w-lg mx-auto">
+  <h2 class="font-bold text-xl mb-4">Add Workout Details</h2>
+  <form #workoutForm="ngForm" (ngSubmit)="addWorkout()" class="space-y-4">
+    <mat-form-field class="w-full">
+      <mat-label>User Name</mat-label>
+      <input
+        matInput
+        id="userName"
+        [(ngModel)]="userName"
+        name="userName"
+        type="text"
+        required
+        #userNameRef="ngModel"
+      />
+      <mat-error *ngIf="userNameRef.invalid && userNameRef.touched"
+        >User Name is required.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Workout Type</mat-label>
+      <mat-select
+        id="workoutTypes"
+        [(ngModel)]="workoutType"
+        name="workoutTypes"
+        required
+        #workoutTypesRef="ngModel"
+      >
+        <mat-option disabled value="">Select a workout type</mat-option>
+        <mat-option
+          *ngFor="let workoutType of workoutTypes"
+          [value]="workoutType"
+        >
+          {{ workoutType }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="workoutTypesRef.invalid && workoutTypesRef.touched"
+        >Workout Type is required.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Workout Minutes</mat-label>
+      <input
+        matInput
+        id="workoutMinutes"
+        type="number"
+        [(ngModel)]="workoutMinutes"
+        name="workoutMinutes"
+        required
+        min="0"
+        #workoutMinutesRef="ngModel"
+      />
+      <mat-error *ngIf="workoutMinutesRef.invalid && workoutMinutesRef.touched"
+        >Workout Minutes are required.</mat-error
+      >
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      type="submit"
+      class="w-full font-semibold custom-button"
+      (focus)="showSnackbarForAdd($event)"
+    >
+      Add Workout
+    </button>
+  </form>
+
+  <!-- Section to Display Workout List and Navigate -->
+  <div class="mt-8">
+    <h3 class="font-bold text-lg mb-4">
+      Want To See Workout List.. Click Below..
+    </h3>
+    <button
+      mat-raised-button
+      class="w-full font-semibold custom-button"
+      (click)="navigateToWorkoutDetails()"
+    >
+      View Workout Details
+    </button>
+  </div>
+</div>
